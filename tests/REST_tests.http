@@ -1,0 +1,111 @@
+### REST API Tests - Gestion Options Etudiants
+### Base URL: http://localhost:8080/Gestion_Options_Etudiants/rest
+### Exécuter chaque requête et prendre un screenshot du résultat
+
+### ============================================================
+### 1. OPTIONS - CRUD
+### ============================================================
+
+### 1.1 POST /options - Ajouter une option
+### Screenshot: option_post.png
+POST http://localhost:8080/Gestion_Options_Etudiants/rest/options
+Content-Type: application/json
+
+{
+  "codeOption": 6,
+  "libelle": "Biologie",
+  "domaine": "Sciences",
+  "responsable": "M. Responsable Biologie",
+  "credits": 18,
+  "semestre": 1,
+  "capacite": 20
+}
+
+### 1.2 GET /options - Lister toutes les options
+### Screenshot: option_get_all.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/options
+Accept: application/json
+
+### 1.3 GET /options?domaine=Mathématiques - Filtrer par domaine
+### Screenshot: option_get_by_domaine.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/options?domaine=Math%C3%A9matiques
+Accept: application/json
+
+### 1.4 GET /options/{code} - Obtenir une option par code
+### Screenshot: option_get_by_code.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/options/1
+Accept: application/json
+
+### 1.5 PUT /options/{code} - Modifier une option
+### Screenshot: option_put.png
+PUT http://localhost:8080/Gestion_Options_Etudiants/rest/options/1
+Content-Type: application/json
+
+{
+  "codeOption": 1,
+  "libelle": "Informatique Avancée",
+  "domaine": "Informatique",
+  "responsable": "M. Nouveau Responsable",
+  "credits": 35,
+  "semestre": 2,
+  "capacite": 40
+}
+
+### 1.6 DELETE /options/{code} - Supprimer une option
+### Screenshot: option_delete.png
+DELETE http://localhost:8080/Gestion_Options_Etudiants/rest/options/5
+
+### ============================================================
+### 2. ETUDIANTS - CRUD
+### ============================================================
+
+### 2.1 POST /etudiants - Ajouter un étudiant (option codeOption=2 doit exister)
+### Screenshot: etudiant_post.png
+POST http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants
+Content-Type: application/json
+
+{
+  "identifiant": "I004",
+  "nom": "Martin",
+  "prenom": "Sophie",
+  "option": {
+    "codeOption": 2
+  },
+  "anneeEtude": 2024,
+  "email": "sophie.martin@example.com"
+}
+
+### 2.2 GET /etudiants - Lister tous les étudiants
+### Screenshot: etudiant_get_all.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants
+Accept: application/json
+
+### 2.3 GET /etudiants/{identifiant} - Obtenir un étudiant par identifiant
+### Screenshot: etudiant_get_by_id.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants/I001
+Accept: application/json
+
+### 2.4 PUT /etudiants/{identifiant} - Modifier un étudiant
+### Screenshot: etudiant_put.png
+PUT http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants/I001
+Content-Type: application/json
+
+{
+  "identifiant": "I001",
+  "nom": "Doe",
+  "prenom": "Jean-Pierre",
+  "option": {
+    "codeOption": 1
+  },
+  "anneeEtude": 2024,
+  "email": "jean-pierre.doe@example.com"
+}
+
+### 2.5 DELETE /etudiants/{identifiant} - Supprimer un étudiant
+### Screenshot: etudiant_delete.png
+DELETE http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants/I003
+
+### 2.6 GET /etudiants/option?codeOption=1 - Étudiants par option (XML)
+### Screenshot: etudiant_get_by_option_xml.png
+GET http://localhost:8080/Gestion_Options_Etudiants/rest/etudiants/option?codeOption=1
+Accept: application/xml
