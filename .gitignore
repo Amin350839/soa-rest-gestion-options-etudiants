@@ -49,5 +49,7 @@ Thumbs.db
 # Kotlin
 .kotlin
 
-# Gemini
+# AI / Local tools
 .gemini/
+.antigravity/
+.antigravity-ide/

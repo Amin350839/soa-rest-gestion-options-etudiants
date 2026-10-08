@@ -82,6 +82,6 @@ public class OptionBusiness {
     }
 
     public void setOptions(List<Option> options) {
-        this.options = options;
+        OptionBusiness.options = options;
     }
 }
